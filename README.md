@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF to Excel Converter
 
-## Getting Started
+A modern web application that extracts data from PDF files and converts it into structured Excel spreadsheets using AI-powered text extraction and processing.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- PDF File Upload: Drag and drop or click to upload PDF files
+- AI-Powered Extraction: Uses LlamaParse for accurate text extraction
+- Dynamic Schema: Configurable data extraction schema for different document types
+- Interactive Table View: Real-time preview of extracted data
+- Excel Export: Download extracted data as formatted Excel files
+- Field Targeting: Extract specific fields based on custom schema
+- Batch Processing: Process multiple documents with the same schema
+
+## Tech Stack
+
+### Frontend
+- Next.js 13+ (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS
+- shadcn/ui Components
+- Lucide Icons
+
+### Backend
+- Next.js API Routes
+- OpenAI GPT-4
+- LlamaParse PDF Reader
+- XLSX (Excel generation)
+- Zod (Schema validation)
+
+
+## Prerequisites
+
+Before running the application, make sure you have:
+
+1. Node.js 18 or higher installed
+2. pnpm package manager installed
+3. OpenAI API key
+4. LlamaParse API key
+
+## Environment Setup
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+LLAMAPARSE_API_KEY=your_llamaparse_api_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd pdf2excel
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-## Learn More
+3. Run the development server:
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Upload PDF**: Click the upload area or drag and drop a PDF file
+2. **Configure Schema**: Define the fields you want to extract
+3. **Preview Data**: View extracted data in the interactive table
+4. **Download Excel**: Click the download button to get the Excel file
 
-## Deploy on Vercel
+## Schema Configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The application supports two types of fields:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Simple Fields**: Single value fields
+```typescript
+{
+  type: 'field',
+  name: 'invoiceNumber',
+  description: 'Invoice number from the document'
+}
+```
+
+2. **Group Fields**: Fields containing multiple related values
+```typescript
+{
+  type: 'group',
+  name: 'address',
+  fields: {
+    street: { description: 'Street address' },
+    city: { description: 'City name' },
+    zip: { description: 'ZIP code' }
+  }
+}
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details
