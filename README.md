@@ -21,7 +21,7 @@ A modern web application that extracts data from PDF files and converts it into 
 ## Tech Stack
 
 ### Frontend
-- Next.js 13+ (App Router)
+- Next.js 14+ (App Router)
 - React 18
 - TypeScript
 - Tailwind CSS
